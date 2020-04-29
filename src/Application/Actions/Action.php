@@ -47,9 +47,9 @@ abstract class Action
     }
 
     /**
-     * @param Request  $request
+     * @param Request $request
      * @param Response $response
-     * @param array    $args
+     * @param array $args
      * @return Response
      * @throws HttpNotFoundException
      * @throws HttpBadRequestException
@@ -90,7 +90,7 @@ abstract class Action
     }
 
     /**
-     * @param  string $name
+     * @param string $name
      * @return mixed
      * @throws HttpBadRequestException
      */
@@ -104,7 +104,7 @@ abstract class Action
     }
 
     /**
-     * @param  array|object|null $data
+     * @param array|object|null $data
      * @return Response
      */
     protected function respondWithData($data = null): Response

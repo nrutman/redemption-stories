@@ -30,7 +30,11 @@ class Testimony
      * @param string $videoPosterUri
      */
     public function __construct(
-        string $slug, string $ownerName, string $descriptionHtml, string $videoUri, string $videoPosterUri
+        string $slug,
+        string $ownerName,
+        string $descriptionHtml,
+        string $videoUri,
+        string $videoPosterUri
     ) {
         $this->slug = $slug;
         $this->ownerName = $ownerName;
