@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Log\LoggerInterface;
 use Slim\Exception\HttpBadRequestException;
 use Slim\Exception\HttpNotFoundException;
+use Twig\Environment as TwigEnvironment;
 
 abstract class Action
 {
@@ -16,6 +17,9 @@ abstract class Action
      * @var LoggerInterface
      */
     protected $logger;
+
+    /** @var TwigEnvironment */
+    protected $twig;
 
     /**
      * @var Request
@@ -34,10 +38,12 @@ abstract class Action
 
     /**
      * @param LoggerInterface $logger
+     * @param TwigEnvironment $twig
      */
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, TwigEnvironment $twig)
     {
         $this->logger = $logger;
+        $this->twig = $twig;
     }
 
     /**
@@ -105,6 +111,28 @@ abstract class Action
     {
         $payload = new ActionPayload(200, $data);
         return $this->respond($payload);
+    }
+
+    /**
+     * @param string $view The name of the twig view
+     * @param array $data Optional data to pass to the twig view
+     *
+     * @return Response
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
+    protected function respondWithView(string $view, array $data = []): Response
+    {
+        $response = new \Slim\Psr7\Response();
+
+        $response
+            ->getBody()
+            ->write(
+                $this->twig->render($view, $data)
+            );
+
+        return $response;
     }
 
     /**
