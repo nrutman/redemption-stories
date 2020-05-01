@@ -3,6 +3,7 @@
 namespace App\Application\Actions\Testimony;
 
 use App\Application\Actions\Action;
+use App\Domain\Testimony\TestimonyNotFoundException;
 use App\Domain\Testimony\TestimonyRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
@@ -31,12 +32,20 @@ class ViewTestimonyAction extends Action
     {
         $slug = $this->resolveArg('slug');
 
+        $testimony = $this
+            ->testimonyRepository
+            ->findTestimonyBySlug($slug);
+
+        if (!$testimony) {
+            throw new TestimonyNotFoundException();
+        }
+
         $this
             ->logger
             ->info('Testimony viewed', [
                 'slug' => $slug,
             ]);
 
-        return $this->respondWithData(['slug' => $slug]);
+        return $this->respondWithView('testimony.html.twig', ['story' => $testimony]);
     }
 }

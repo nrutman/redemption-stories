@@ -23,8 +23,7 @@ class InMemoryTestimonyRepository implements TestimonyRepository
      */
     public function findAll(): array
     {
-        // TODO: Implement findAll() method.
-        return [];
+        return array_values($this->testimonies);
     }
 
     /**
@@ -32,8 +31,11 @@ class InMemoryTestimonyRepository implements TestimonyRepository
      */
     public function findTestimonyBySlug(string $slug): ?Testimony
     {
-        // TODO: Implement findTestimonyBySlug() method.
-        return null;
+        if (!array_key_exists($slug, $this->testimonies)) {
+            return null;
+        }
+
+        return $this->testimonies[$slug];
     }
 
     /**
@@ -48,12 +50,16 @@ class InMemoryTestimonyRepository implements TestimonyRepository
 
         $files = glob(sprintf('%s/*.md', realpath($path)));
 
-        foreach ($files as $file) {
+        foreach ($files as $i => $file) {
             $doc = YamlFrontMatter::parseFile($file);
-            $testimonies[] = new Testimony(
-                basename($file, '.md'),
-                $doc->matter('name') ?? '',
+            $key = basename($file, '.md');
+            $testimonies[$key] = new Testimony(
+                $i,
+                $key,
+                $doc->matter('firstName') ?? '',
+                $doc->matter('lastName') ?? '',
                 self::parseMarkdown($doc->body()) ?? '',
+                $doc->matter('toldBy') ?? '',
                 $doc->matter('video') ?? '',
                 $doc->matter('videoPoster') ?? ''
             );

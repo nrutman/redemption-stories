@@ -29,9 +29,13 @@ return function (ContainerBuilder $containerBuilder) {
         TwigEnvironment::class => function (ContainerInterface $c): TwigEnvironment {
             $loader = new \Twig\Loader\FilesystemLoader(sprintf('%s/../view', __DIR__));
 
-            return new TwigEnvironment($loader, [
+            $twig = new TwigEnvironment($loader, [
                 sprintf('%s/../var/cache', __DIR__),
             ]);
+
+            $twig->enableDebug();
+
+            return $twig;
         },
     ]);
 };

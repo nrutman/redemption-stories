@@ -1,0 +1,137 @@
+/*
+ * Base Styles
+ */
+body {
+    background: #DEE3E7 url("/img/bg.jpg") no-repeat fixed center center;
+    background-size: cover;
+    font-family: "Barlow", sans-serif;
+    font-size: 2rem;
+}
+
+blockquote {
+    border: none;
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    font-style: italic;
+    padding: 1rem 3rem;
+}
+
+blockquote cite {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    margin-left: 2rem;
+}
+
+blockquote cite::before {
+    content: "— "
+}
+
+/*
+ * Utility Classes
+ */
+.extra-bold {
+    font-weight: 900;
+}
+
+/*
+ * Layout
+ */
+.page-header {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.page-header img.logo {
+    display: block;
+    margin: 0 auto;
+    max-width: 30rem;
+    padding: 1rem;
+}
+
+h1.page-title {
+    font-family: "Playfair Display", serif;
+    font-size: 7rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 3.5rem 0;
+    text-align: center;
+}
+
+h1.page-title .page-title-label:first-child {
+    margin-top: 4rem;
+}
+
+h1.page-title .page-title-label {
+    display: inline-block;
+    font-family: "Barlow", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.3rem;
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    background-color: #4a4d53;
+    color: #DEE3E7;
+    text-transform: uppercase;
+}
+
+.page-footer-content {
+    border-top: 1px solid #969da1;
+    font-size: 1.4rem;
+    line-height: 2;
+    margin-top: 4rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.page-footer-content a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.page-footer-content .provchurch-logo {
+    max-width: 25rem;
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/*
+ * Story Styles
+ */
+
+.story-told-by-container {
+    overflow: hidden;
+    text-align: center;
+}
+
+.story-told-by {
+    display: inline-block;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 4rem;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.story-told-by::before, .story-told-by::after {
+    content: "";
+    border-top: 1px solid #969da1;
+    margin-top: 1px;
+    position: absolute;
+    top: 50%;
+    width: 60rem;
+}
+
+.story-told-by::before {
+    margin-right: 2rem;
+    right: 100%;
+}
+
+.story-told-by::after {
+    left: 100%;
+    margin-left: 2rem;
+}

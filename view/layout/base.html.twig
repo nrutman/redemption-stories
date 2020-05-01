@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    {% block head %}
+        <title>{% block title %}{% endblock %}</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,200;0,400;0,700;0,900;1,200;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+        <link rel="stylesheet" href="/css/milligram-custom.css">
+
+        <link href="/css/style.css" rel="stylesheet">
+    {% endblock %}
+</head>
+<body class="{% block bodyClass %}{% endblock %}">
+
+    <div class="page-header container">
+        {% block header %}
+            <div class="row">
+                <div class="column">
+                    <a href="/">
+                        <img class="logo" src="/img/redemption-stories.svg" alt="">
+                    </a>
+                </div>
+                <div class="column">
+                    <h1 class="page-title">{% block pageTitle %}{% endblock %}</h1>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+
+    <div class="page-content container">{% block content %}{% endblock %}</div>
+
+    <div class="page-footer container">
+        {% block footer %}
+            <div class="page-footer-content">
+                <a class="extra-bold" href="/">Redemption Stories</a> are brought to you by
+                <a href="https://provchurch.org" target="_blank">
+                    <img class="provchurch-logo" src="/img/provchurch-horiz.svg" alt="">
+                </a>
+            </div>
+        {% endblock %}
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

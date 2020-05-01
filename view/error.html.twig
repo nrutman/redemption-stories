@@ -1,0 +1,14 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}Error: Object not found (404){% endblock %}
+
+{% block content %}
+    <h1>
+        {{ error.type|replace({'_': ' '})|title }}
+        ({{ statusCode }})
+    </h1>
+    <h2>{{ error.description }}</h2>
+    {% if (error.data) %}
+        <p>{{ error.data }}</p>
+    {% endif %}
+{% endblock %}

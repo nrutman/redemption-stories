@@ -1,0 +1,57 @@
+{% extends 'layout/base.html.twig' %}
+
+{% block title %}{{ story.ownerFirstName }}&rsquo;s Story{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="https://vjs.zencdn.net/7.7.5/video-js.css" rel="stylesheet">
+    <link href="https://unpkg.com/@videojs/themes@1/dist/sea/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://vjs.zencdn.net/7.7.5/video.js"></script>
+{% endblock %}
+
+{% block bodyClass %}story{% endblock %}
+
+{% block pageTitle %}
+    <span class="page-title-label is-dark">Chapter #{{ story.id + 1 }}</span>
+    <br>
+    {{ story.ownerFirstName}}&rsquo;s Story
+{% endblock %}
+
+{% block content %}
+    {% if story.toldBy %}
+    <div class="row">
+        <div class="column story-told-by-container">
+            <div class="story-told-by">
+                Told by {{ story.toldBy }}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="column column-80 column-offset-10">
+            <video
+                    class="story-video video-js vjs-theme-sea vjs-fluid"
+                    controls
+                    preload="auto"
+                    poster="{{ story.videoPosterUri }}"
+                    data-setup="{}"
+            >
+                <source src="{{ story.videoUri }}" type="video/mp4">
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="https://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>.
+                </p>
+            </video>
+
+            <p class="story-description">
+                {{ story.descriptionHtml|raw }}
+            </p>
+        </div>
+    </div>
+{% endblock %}

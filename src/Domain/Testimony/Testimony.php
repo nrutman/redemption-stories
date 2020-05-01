@@ -10,11 +10,20 @@ class Testimony
     /** @var string */
     private $descriptionHtml;
 
+    /** @var int */
+    private $id;
+
     /** @var string */
-    private $ownerName;
+    private $ownerFirstName;
+
+    /** @var string */
+    private $ownerLastName;
 
     /** @var string */
     private $slug;
+
+    /** @var string */
+    private $toldBy;
 
     /** @var string */
     private $videoPosterUri;
@@ -23,22 +32,31 @@ class Testimony
     private $videoUri;
 
     /**
+     * @param int $id
      * @param string $slug
-     * @param string $ownerName
+     * @param string $ownerFirstName
+     * @param string $ownerLastName
      * @param string $descriptionHtml
+     * @param string $toldBy
      * @param string $videoUri
      * @param string $videoPosterUri
      */
     public function __construct(
+        int $id,
         string $slug,
-        string $ownerName,
+        string $ownerFirstName,
+        string $ownerLastName,
         string $descriptionHtml,
+        string $toldBy,
         string $videoUri,
         string $videoPosterUri
     ) {
+        $this->id = $id;
         $this->slug = $slug;
-        $this->ownerName = $ownerName;
+        $this->ownerFirstName = $ownerFirstName;
+        $this->ownerLastName = $ownerLastName;
         $this->descriptionHtml = $descriptionHtml;
+        $this->toldBy = $toldBy;
         $this->videoUri = $videoUri;
         $this->videoPosterUri = $videoPosterUri;
     }
@@ -52,11 +70,27 @@ class Testimony
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
      * @return string
      */
-    public function getOwnerName(): string
+    public function getOwnerFirstName(): string
     {
-        return $this->ownerName;
+        return $this->ownerFirstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOwnerLastName(): string
+    {
+        return $this->ownerLastName;
     }
 
     /**
@@ -65,6 +99,14 @@ class Testimony
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToldBy(): string
+    {
+        return $this->toldBy;
     }
 
     /**
