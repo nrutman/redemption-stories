@@ -12,7 +12,7 @@ blockquote {
     border: none;
     font-family: "Playfair Display", serif;
     font-size: 2rem;
-    font-style: italic;
+    font-weight: bold;
     padding: 1rem 3rem;
 }
 
