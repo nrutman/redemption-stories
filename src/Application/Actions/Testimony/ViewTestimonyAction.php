@@ -40,12 +40,6 @@ class ViewTestimonyAction extends Action
             throw new TestimonyNotFoundException();
         }
 
-        $this
-            ->logger
-            ->info('Testimony viewed', [
-                'slug' => $slug,
-            ]);
-
         return $this->respondWithView('testimony.html.twig', ['story' => $testimony]);
     }
 }
