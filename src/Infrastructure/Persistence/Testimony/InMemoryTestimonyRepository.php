@@ -1,21 +1,28 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Infrastructure\Persistence\Testimony;
 
 use App\Domain\Testimony\Testimony;
 use App\Domain\Testimony\TestimonyRepository;
-use Parsedown;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+use App\Infrastructure\FileSystem\MarkdownFileLoader;
 
 class InMemoryTestimonyRepository implements TestimonyRepository
 {
+    /** @var MarkdownFileLoader */
+    private $markdownFileLoader;
 
     /** @var Testimony[] */
     private $testimonies = [];
 
-    public function __construct()
+    /**
+     * @param MarkdownFileLoader $markdownFileLoader
+     * @param Testimony[]|null $testimonies
+     */
+    public function __construct(MarkdownFileLoader $markdownFileLoader)
     {
-        $this->testimonies = self::loadTestimonies(sprintf('%s/../../../../data/testimony', __DIR__));
+        $this->markdownFileLoader = $markdownFileLoader;
+        $this->testimonies = $this->loadFromMarkdownFiles();
     }
 
     /**
@@ -39,46 +46,28 @@ class InMemoryTestimonyRepository implements TestimonyRepository
     }
 
     /**
-     * @param $path
-     *
      * @return Testimony[]
      */
-    private static function loadTestimonies($path): array
+    private function loadFromMarkdownFiles(): array
     {
+        $idCounter = 0;
         /** @var Testimony[] $testimonies */
         $testimonies = [];
+        $documents = $this->markdownFileLoader->loadMarkdownFiles(sprintf('%s/../../../../data/testimony', __DIR__));
 
-        $files = glob(sprintf('%s/*.md', realpath($path)));
-
-        foreach ($files as $i => $file) {
-            $doc = YamlFrontMatter::parseFile($file);
-            $key = basename($file, '.md');
+        foreach ($documents as $key => $document) {
             $testimonies[$key] = new Testimony(
-                $i,
+                $idCounter++,
                 $key,
-                $doc->matter('firstName') ?? '',
-                $doc->matter('lastName') ?? '',
-                self::parseMarkdown($doc->body()) ?? '',
-                $doc->matter('toldBy') ?? '',
-                $doc->matter('video') ?? '',
-                $doc->matter('videoPoster') ?? ''
+                $document->matter('firstName') ?? '',
+                $document->matter('lastName') ?? '',
+                $document->body() ?? '',
+                $document->matter('toldBy') ?? '',
+                $document->matter('video') ?? '',
+                $document->matter('videoPoster') ?? ''
             );
         }
 
         return $testimonies;
-    }
-
-    /**
-     * Parses markdown and returns the HTML.
-     *
-     * @param string $markdown
-     *
-     * @return string
-     */
-    private static function parseMarkdown(string $markdown): string
-    {
-        return Parsedown::instance()
-            ->setBreaksEnabled(true)
-            ->text($markdown);
     }
 }

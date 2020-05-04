@@ -5,7 +5,7 @@ namespace Tests;
 
 use DI\ContainerBuilder;
 use Exception;
-use PHPUnit\Framework\TestCase as PHPUnit_TestCase;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\App;
 use Slim\Factory\AppFactory;
@@ -14,7 +14,7 @@ use Slim\Psr7\Headers;
 use Slim\Psr7\Request as SlimRequest;
 use Slim\Psr7\Uri;
 
-class TestCase extends PHPUnit_TestCase
+class TestCase extends MockeryTestCase
 {
     /**
      * @return App
