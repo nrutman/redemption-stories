@@ -12,8 +12,6 @@ class ViewHomeAction extends Action
     protected function action(): Response
     {
         return $this->response->withStatus(302)->withHeader('Location', '/story/01-lisa');
-        /*
-         * return $this->respondWithView('home.html.twig');
-         */
+//        return $this->respondWithView('home.html.twig');
     }
 }
