@@ -16,17 +16,13 @@ class InMemoryTestimonyRepositoryTest extends TestCase
     private const SLUG_1 = '123-alice';
     private const SLUG_2 = '456-bob';
 
-    /** @var MarkdownFileLoader|Mockery\LegacyMockInterface|Mockery\MockInterface */
-    private $markdownFileLoader;
-
     /** @var TestimonyRepository */
     private $target;
 
-    public function setUp()
+    public function setUp(): void
     {
-        $this->markdownFileLoader = Mockery::mock(MarkdownFileLoader::class);
-        $this
-            ->markdownFileLoader
+        $markdownFileLoader = Mockery::mock(MarkdownFileLoader::class);
+        $markdownFileLoader
             ->shouldReceive('loadMarkdownFiles')
             ->andReturn([
                 self::SLUG_1 => new YamlDocument(['slug' => self::SLUG_1], 'BODY_1'),
@@ -34,7 +30,7 @@ class InMemoryTestimonyRepositoryTest extends TestCase
             ]);
 
         $this->target = new InMemoryTestimonyRepository(
-            $this->markdownFileLoader
+            $markdownFileLoader
         );
     }
 
