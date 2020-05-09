@@ -57,7 +57,7 @@ class ViewTestimonyActionTest extends TestCase
         $container->set(TestimonyRepository::class, $testimonyRepository);
         $container->set(TwigEnvironment::class, $twig);
 
-        $request = $this->createRequest('GET', self::VIDEO_SLUG);
+        $request = $this->createRequest('GET', sprintf('story/%s', self::VIDEO_SLUG));
         $response = $app->handle($request);
 
         $this->assertEquals(200, $response->getStatusCode());
