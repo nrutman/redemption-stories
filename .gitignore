@@ -4,3 +4,4 @@
 /logs/*
 !/logs/README.md
 .php_cs.cache
+./junit.xml
