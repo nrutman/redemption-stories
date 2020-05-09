@@ -13,6 +13,17 @@ class ViewHomeAction extends Action
     {
         return $this->response->withStatus(302)->withHeader('Location', '/story/01-lisa');
 
+
+
+
+
+
+
+
+
+
+
+        
 //        return $this->respondWithView('home.html.twig');
     }
 }
