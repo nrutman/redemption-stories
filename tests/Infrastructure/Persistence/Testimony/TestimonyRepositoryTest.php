@@ -4,19 +4,19 @@ declare(strict_types=1);
 namespace Tests\Infrastructure\Persistence\Testimony;
 
 use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepository;
+use App\Domain\Testimony\TestimonyRepositoryInterface;
 use App\Infrastructure\FileSystem\MarkdownFileLoader;
-use App\Infrastructure\Persistence\Testimony\InMemoryTestimonyRepository;
+use App\Infrastructure\Persistence\Testimony\TestimonyRepository;
 use Mockery;
 use Spatie\YamlFrontMatter\Document as YamlDocument;
 use Tests\TestCase;
 
-class InMemoryTestimonyRepositoryTest extends TestCase
+class TestimonyRepositoryTest extends TestCase
 {
     private const SLUG_1 = '123-alice';
     private const SLUG_2 = '456-bob';
 
-    /** @var TestimonyRepository */
+    /** @var TestimonyRepositoryInterface */
     private $target;
 
     public function setUp(): void
@@ -29,7 +29,7 @@ class InMemoryTestimonyRepositoryTest extends TestCase
                 self::SLUG_2 => new YamlDocument(['slug' => self::SLUG_2], 'BODY_2')
             ]);
 
-        $this->target = new InMemoryTestimonyRepository(
+        $this->target = new TestimonyRepository(
             $markdownFileLoader
         );
     }

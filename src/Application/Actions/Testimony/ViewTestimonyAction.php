@@ -5,22 +5,22 @@ namespace App\Application\Actions\Testimony;
 
 use App\Application\Actions\Action;
 use App\Domain\Testimony\TestimonyNotFoundException;
-use App\Domain\Testimony\TestimonyRepository;
+use App\Domain\Testimony\TestimonyRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Twig\Environment as TwigEnvironment;
 
 class ViewTestimonyAction extends Action
 {
-    /** @var TestimonyRepository */
+    /** @var TestimonyRepositoryInterface */
     protected $testimonyRepository;
 
     /**
      * @param LoggerInterface $logger
      * @param TwigEnvironment $twig
-     * @param TestimonyRepository $testimonyRepository
+     * @param TestimonyRepositoryInterface $testimonyRepository
      */
-    public function __construct(LoggerInterface $logger, TwigEnvironment $twig, TestimonyRepository $testimonyRepository)
+    public function __construct(LoggerInterface $logger, TwigEnvironment $twig, TestimonyRepositoryInterface $testimonyRepository)
     {
         parent::__construct($logger, $twig);
         $this->testimonyRepository = $testimonyRepository;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests\Application\Actions\Testimony;
 
 use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepository;
+use App\Domain\Testimony\TestimonyRepositoryInterface;
 use DI\Container;
 use Mockery;
 use Tests\TestCase;
@@ -40,7 +40,7 @@ class ViewTestimonyActionTest extends TestCase
             self::VIDEO_POSTER_URI
         );
 
-        $testimonyRepository = Mockery::mock(TestimonyRepository::class);
+        $testimonyRepository = Mockery::mock(TestimonyRepositoryInterface::class);
         $testimonyRepository
             ->shouldReceive('findTestimonyBySlug')
             ->with(self::VIDEO_SLUG)
@@ -54,7 +54,7 @@ class ViewTestimonyActionTest extends TestCase
             ->andReturn(self::RESPONSE_OUTPUT)
             ->once();
 
-        $container->set(TestimonyRepository::class, $testimonyRepository);
+        $container->set(TestimonyRepositoryInterface::class, $testimonyRepository);
         $container->set(TwigEnvironment::class, $twig);
 
         $request = $this->createRequest('GET', sprintf('story/%s', self::VIDEO_SLUG));

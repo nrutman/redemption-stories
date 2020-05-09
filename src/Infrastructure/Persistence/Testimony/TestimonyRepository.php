@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace App\Infrastructure\Persistence\Testimony;
 
 use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepository;
+use App\Domain\Testimony\TestimonyRepositoryInterface;
 use App\Infrastructure\FileSystem\MarkdownFileLoader;
 
-class InMemoryTestimonyRepository implements TestimonyRepository
+class TestimonyRepository implements TestimonyRepositoryInterface
 {
     /** @var MarkdownFileLoader */
     private $markdownFileLoader;

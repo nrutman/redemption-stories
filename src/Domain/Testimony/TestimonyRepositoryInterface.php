@@ -2,7 +2,7 @@
 
 namespace App\Domain\Testimony;
 
-interface TestimonyRepository
+interface TestimonyRepositoryInterface
 {
     /**
      * @return array
