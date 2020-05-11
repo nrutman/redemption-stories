@@ -43,9 +43,9 @@ class TestimonyRepositoryTest extends TestCase
         $this->assertEquals(self::SLUG_2, $testimonies[1]->getSlug());
     }
 
-    public function testFindTestimonyBySlug()
+    public function testFindBySlug()
     {
-        $testimony = $this->target->findTestimonyBySlug(self::SLUG_2);
+        $testimony = $this->target->findBySlug(self::SLUG_2);
         $this->assertEquals(self::SLUG_2, $testimony->getSlug());
     }
 

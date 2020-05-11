@@ -16,5 +16,10 @@ interface TestimonyRepositoryInterface
      *
      * @throws TestimonyNotFoundException
      */
-    public function findTestimonyBySlug(string $slug): ?Testimony;
+    public function findBySlug(string $slug): ?Testimony;
+
+    /**
+     * @return Testimony|null
+     */
+    public function findLast(): ?Testimony;
 }

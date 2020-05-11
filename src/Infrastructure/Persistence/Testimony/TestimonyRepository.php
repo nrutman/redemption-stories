@@ -17,7 +17,6 @@ class TestimonyRepository implements TestimonyRepositoryInterface
 
     /**
      * @param MarkdownFileLoader $markdownFileLoader
-     * @param Testimony[]|null $testimonies
      */
     public function __construct(MarkdownFileLoader $markdownFileLoader)
     {
@@ -36,7 +35,19 @@ class TestimonyRepository implements TestimonyRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findTestimonyBySlug(string $slug): ?Testimony
+    public function findLast(): ?Testimony
+    {
+        if (count($this->testimonies) === 0) {
+            return null;
+        }
+
+        return $this->testimonies[array_key_last($this->testimonies)];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findBySlug(string $slug): ?Testimony
     {
         if (!array_key_exists($slug, $this->testimonies)) {
             return null;

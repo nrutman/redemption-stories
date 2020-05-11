@@ -42,7 +42,7 @@ class ViewTestimonyActionTest extends TestCase
 
         $testimonyRepository = Mockery::mock(TestimonyRepositoryInterface::class);
         $testimonyRepository
-            ->shouldReceive('findTestimonyBySlug')
+            ->shouldReceive('findBySlug')
             ->with(self::VIDEO_SLUG)
             ->andReturn($testimony)
             ->once();

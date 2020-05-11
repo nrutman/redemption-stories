@@ -35,7 +35,7 @@ class ViewTestimonyAction extends Action
 
         $testimony = $this
             ->testimonyRepository
-            ->findTestimonyBySlug($slug);
+            ->findBySlug($slug);
 
         if (!$testimony) {
             throw new TestimonyNotFoundException();

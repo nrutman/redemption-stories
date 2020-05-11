@@ -17,6 +17,6 @@ class ViewHomeActionTest extends TestCase
             );
 
         $this->assertEquals(302, $response->getStatusCode());
-        $this->assertEquals(['/story/01-lisa'], $response->getHeader('Location'));
+        $this->assertCount(1, $response->getHeader('Location'));
     }
 }
