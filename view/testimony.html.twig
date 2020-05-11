@@ -37,7 +37,9 @@
                     class="story-video video-js vjs-theme-sea vjs-fluid"
                     controls
                     preload="auto"
+                    {% if (story.videoPosterUrl) %}
                     poster="{{ story.videoPosterUri }}"
+                    {% endif %}
                     data-setup="{}"
             >
                 <source src="{{ story.videoUri }}" type="video/mp4">

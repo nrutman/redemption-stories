@@ -11,20 +11,25 @@ body {
 blockquote {
     border: none;
     font-family: "Playfair Display", serif;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 3rem;
     padding: 1rem 3rem;
 }
 
 blockquote cite {
     font-family: "Barlow Condensed", sans-serif;
-    font-weight: 500;
+    font-size: 2rem;
     font-style: normal;
-    margin-left: 2rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
 }
 
 blockquote cite::before {
-    content: "— "
+    content: " (";
+}
+
+blockquote cite::after {
+    content: ") ";
 }
 
 /*
@@ -60,7 +65,7 @@ h1.page-title {
 }
 
 h1.page-title .page-title-label:first-child {
-    margin-top: 4rem;
+    margin-top: 3.5rem;
 }
 
 h1.page-title .page-title-label {
