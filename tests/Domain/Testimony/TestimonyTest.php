@@ -11,7 +11,7 @@ class TestimonyTest extends TestCase
     public function getterSetterProvider(): array
     {
         return [
-            'Standard' => [0, '01-bill', 'bill.jpg', 'Bill', 'Davis', '<strong>some</strong>description', 'Pastor Foo', 'https://video', 'https://poster']
+            'Standard' => [0, '01-bill', 'bill.jpg', 'Bill', 'Davis', 'a title', '<strong>some</strong>description', 'Pastor Foo', 'https://video', 'https://poster']
         ];
     }
 
@@ -23,6 +23,7 @@ class TestimonyTest extends TestCase
      * @param string $bioPhoto
      * @param string $ownerFirstName
      * @param string $ownerLastName
+     * @param string $title
      * @param string $descriptionHtml
      * @param string $toldBy
      * @param string $videoUri
@@ -34,6 +35,7 @@ class TestimonyTest extends TestCase
         string $bioPhoto,
         string $ownerFirstName,
         string $ownerLastName,
+        string $title,
         string $descriptionHtml,
         string $toldBy,
         string $videoUri,
@@ -45,6 +47,7 @@ class TestimonyTest extends TestCase
             $bioPhoto,
             $ownerFirstName,
             $ownerLastName,
+            $title,
             $descriptionHtml,
             $toldBy,
             $videoUri,
@@ -53,8 +56,10 @@ class TestimonyTest extends TestCase
 
         $this->assertEquals($id, $testimony->getId());
         $this->assertEquals($slug, $testimony->getSlug());
+        $this->assertEquals($bioPhoto, $testimony->getBioPhoto());
         $this->assertEquals($ownerFirstName, $testimony->getOwnerFirstName());
         $this->assertEquals($ownerLastName, $testimony->getOwnerLastName());
+        $this->assertEquals($title, $testimony->getTitle());
         $this->assertEquals($descriptionHtml, $testimony->getDescriptionHtml());
         $this->assertEquals($toldBy, $testimony->getToldBy());
         $this->assertEquals($videoUri, $testimony->getVideoUri());

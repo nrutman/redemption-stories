@@ -2,6 +2,7 @@
 bioPhoto: sharon.jpg
 firstName: Sharon
 lastName: Householder
+title: Even amidst trials and bitterness, God never stopped pursuing Sharon
 toldBy: Pastor Nate
 video: https://provchurch-web-files.s3.amazonaws.com/redemption-stories/03-sharon.mp4
 ---
