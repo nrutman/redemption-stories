@@ -2,7 +2,7 @@
  * Base Styles
  */
 body {
-    background: #DEE3E7 url("/img/bg.jpg") no-repeat fixed center center;
+    background-color: #DEE3E7;
     background-size: cover;
     font-family: "Barlow", sans-serif;
     font-size: 2rem;
@@ -103,6 +103,18 @@ h1.page-title .page-title-label {
 }
 
 /*
+ * Home Styles
+ */
+
+body.home {
+    background-attachment: fixed;
+    background-image: url("/img/bg.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/*
  * Story Styles
  */
 
@@ -139,4 +151,8 @@ h1.page-title .page-title-label {
 .story-told-by::after {
     left: 100%;
     margin-left: 2rem;
+}
+
+.story-video {
+    outline: 1px solid #c0c3c6;
 }

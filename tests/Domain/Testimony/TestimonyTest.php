@@ -11,14 +11,16 @@ class TestimonyTest extends TestCase
     public function getterSetterProvider(): array
     {
         return [
-            'Standard' => [0, '01-bill', 'Bill', 'Davis', '<strong>some</strong>description', 'Pastor Foo', 'https://video', 'https://poster']
+            'Standard' => [0, '01-bill', 'bill.jpg', 'Bill', 'Davis', '<strong>some</strong>description', 'Pastor Foo', 'https://video', 'https://poster']
         ];
     }
 
     /**
      * @dataProvider getterSetterProvider
+     *
      * @param int $id
      * @param string $slug
+     * @param string $bioPhoto
      * @param string $ownerFirstName
      * @param string $ownerLastName
      * @param string $descriptionHtml
@@ -29,6 +31,7 @@ class TestimonyTest extends TestCase
     public function testGetters(
         int $id,
         string $slug,
+        string $bioPhoto,
         string $ownerFirstName,
         string $ownerLastName,
         string $descriptionHtml,
@@ -39,6 +42,7 @@ class TestimonyTest extends TestCase
         $testimony = new Testimony(
             $id,
             $slug,
+            $bioPhoto,
             $ownerFirstName,
             $ownerLastName,
             $descriptionHtml,

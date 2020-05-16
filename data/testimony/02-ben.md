@@ -1,4 +1,5 @@
 ---
+bioPhoto: ben.jpg
 firstName: Ben
 lastName: Zeisloft
 toldBy: Pastor Nate

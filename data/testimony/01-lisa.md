@@ -1,9 +1,10 @@
 ---
+bioPhoto: lisa.jpg
 firstName: Lisa
 lastName: Loomis
 toldBy: Pastor Nate
 video: https://provchurch-web-files.s3.amazonaws.com/redemption-stories/01-lisa.mp4
-videoPoster: https://provchurch-web-files.s3.amazonaws.com/redemption-stories/01-lisa.jpg
+videoPoster: 01-lisa.jpg
 ---
 
 In this video, we introduce *Redemption Stories*, and why hearing how people encounter the saving power of God is so encouraging.

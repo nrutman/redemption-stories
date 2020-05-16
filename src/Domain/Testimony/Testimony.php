@@ -8,6 +8,9 @@ use JsonSerializable;
 class Testimony
 {
     /** @var string */
+    private $bioPhoto;
+
+    /** @var string */
     private $descriptionHtml;
 
     /** @var int */
@@ -34,6 +37,7 @@ class Testimony
     /**
      * @param int $id
      * @param string $slug
+     * @param string $bioPhoto
      * @param string $ownerFirstName
      * @param string $ownerLastName
      * @param string $descriptionHtml
@@ -44,6 +48,7 @@ class Testimony
     public function __construct(
         int $id,
         string $slug,
+        string $bioPhoto,
         string $ownerFirstName,
         string $ownerLastName,
         string $descriptionHtml,
@@ -53,12 +58,21 @@ class Testimony
     ) {
         $this->id = $id;
         $this->slug = $slug;
+        $this->bioPhoto = $bioPhoto;
         $this->ownerFirstName = $ownerFirstName;
         $this->ownerLastName = $ownerLastName;
         $this->descriptionHtml = $descriptionHtml;
         $this->toldBy = $toldBy;
         $this->videoUri = $videoUri;
         $this->videoPosterUri = $videoPosterUri;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBioPhoto(): string
+    {
+        return $this->bioPhoto;
     }
 
     /**

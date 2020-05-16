@@ -13,6 +13,7 @@ use Twig\Environment as TwigEnvironment;
 class ViewTestimonyActionTest extends TestCase
 {
     private const RESPONSE_OUTPUT = 'HTML OUTPUT';
+    private const VIDEO_BIO_PHOTO = 'photo.jpg';
     private const VIDEO_DESC = '<strong>This is</strong> a description!';
     private const VIDEO_ID = 938;
     private const VIDEO_OWNER_FIRST = 'Jim';
@@ -32,6 +33,7 @@ class ViewTestimonyActionTest extends TestCase
         $testimony = new Testimony(
             self::VIDEO_ID,
             self::VIDEO_SLUG,
+            self::VIDEO_BIO_PHOTO,
             self::VIDEO_OWNER_FIRST,
             self::VIDEO_OWNER_LAST,
             self::VIDEO_DESC,
