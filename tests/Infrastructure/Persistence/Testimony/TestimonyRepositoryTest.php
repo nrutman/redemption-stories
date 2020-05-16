@@ -54,6 +54,7 @@ class TestimonyRepositoryTest extends TestCase
         return new Testimony(
             $id,
             $slug,
+            'photo.jpg',
             'first',
             'last',
             'description',

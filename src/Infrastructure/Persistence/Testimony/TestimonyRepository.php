@@ -70,6 +70,7 @@ class TestimonyRepository implements TestimonyRepositoryInterface
             $testimonies[$key] = new Testimony(
                 $idCounter++,
                 $key,
+                $document->matter('bioPhoto') ?? '',
                 $document->matter('firstName') ?? '',
                 $document->matter('lastName') ?? '',
                 $document->body() ?? '',
