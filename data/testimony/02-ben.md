@@ -2,6 +2,7 @@
 bioPhoto: ben.jpg
 firstName: Ben
 lastName: Zeisloft
+title: God saved Ben from outward success that was tearing him up inside.
 toldBy: Pastor Nate
 video: https://provchurch-web-files.s3.amazonaws.com/redemption-stories/02-ben.mp4
 ---

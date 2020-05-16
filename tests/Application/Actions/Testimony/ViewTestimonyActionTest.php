@@ -20,6 +20,7 @@ class ViewTestimonyActionTest extends TestCase
     private const VIDEO_OWNER_LAST = 'Smith';
     private const VIDEO_POSTER_URI = 'http://poster';
     private const VIDEO_SLUG = '293-foobar';
+    private const VIDEO_TITLE = 'a title';
     private const VIDEO_TOLD_BY = 'Sally';
     private const VIDEO_URI = 'http://video';
 
@@ -36,6 +37,7 @@ class ViewTestimonyActionTest extends TestCase
             self::VIDEO_BIO_PHOTO,
             self::VIDEO_OWNER_FIRST,
             self::VIDEO_OWNER_LAST,
+            self::VIDEO_TITLE,
             self::VIDEO_DESC,
             self::VIDEO_TOLD_BY,
             self::VIDEO_URI,

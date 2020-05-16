@@ -7,60 +7,66 @@ use JsonSerializable;
 
 class Testimony
 {
-    /** @var string */
+    /** @var string|null */
     private $bioPhoto;
 
-    /** @var string */
+    /** @var string|null */
     private $descriptionHtml;
 
     /** @var int */
     private $id;
 
-    /** @var string */
+    /** @var string|null */
     private $ownerFirstName;
 
-    /** @var string */
+    /** @var string|null */
     private $ownerLastName;
 
     /** @var string */
     private $slug;
 
-    /** @var string */
+    /** @var string|null */
+    private $title;
+
+    /** @var string|null */
     private $toldBy;
 
-    /** @var string */
+    /** @var string|null */
     private $videoPosterUri;
 
-    /** @var string */
+    /** @var string|null */
     private $videoUri;
 
     /**
      * @param int $id
      * @param string $slug
-     * @param string $bioPhoto
-     * @param string $ownerFirstName
-     * @param string $ownerLastName
-     * @param string $descriptionHtml
-     * @param string $toldBy
-     * @param string $videoUri
-     * @param string $videoPosterUri
+     * @param string|null $bioPhoto
+     * @param string|null $ownerFirstName
+     * @param string|null $ownerLastName
+     * @param string|null $title
+     * @param string|null $descriptionHtml
+     * @param string|null $toldBy
+     * @param string|null $videoUri
+     * @param string|null $videoPosterUri
      */
     public function __construct(
         int $id,
         string $slug,
-        string $bioPhoto,
-        string $ownerFirstName,
-        string $ownerLastName,
-        string $descriptionHtml,
-        string $toldBy,
-        string $videoUri,
-        string $videoPosterUri
+        ?string $bioPhoto,
+        ?string $ownerFirstName,
+        ?string $ownerLastName,
+        ?string $title,
+        ?string $descriptionHtml,
+        ?string $toldBy,
+        ?string $videoUri,
+        ?string $videoPosterUri
     ) {
         $this->id = $id;
         $this->slug = $slug;
         $this->bioPhoto = $bioPhoto;
         $this->ownerFirstName = $ownerFirstName;
         $this->ownerLastName = $ownerLastName;
+        $this->title = $title;
         $this->descriptionHtml = $descriptionHtml;
         $this->toldBy = $toldBy;
         $this->videoUri = $videoUri;
@@ -68,17 +74,17 @@ class Testimony
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getBioPhoto(): string
+    public function getBioPhoto(): ?string
     {
         return $this->bioPhoto;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescriptionHtml(): string
+    public function getDescriptionHtml(): ?string
     {
         return $this->descriptionHtml;
     }
@@ -92,17 +98,17 @@ class Testimony
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOwnerFirstName(): string
+    public function getOwnerFirstName(): ?string
     {
         return $this->ownerFirstName;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getOwnerLastName(): string
+    public function getOwnerLastName(): ?string
     {
         return $this->ownerLastName;
     }
@@ -116,25 +122,33 @@ class Testimony
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getToldBy(): string
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getToldBy(): ?string
     {
         return $this->toldBy;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getVideoPosterUri(): string
+    public function getVideoPosterUri(): ?string
     {
         return $this->videoPosterUri;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getVideoUri(): string
+    public function getVideoUri(): ?string
     {
         return $this->videoUri;
     }

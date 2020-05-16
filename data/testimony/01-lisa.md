@@ -2,6 +2,7 @@
 bioPhoto: lisa.jpg
 firstName: Lisa
 lastName: Loomis
+title: God used ordinary but passionate Christians to show Lisa the hollowness of mere outward religion.
 toldBy: Pastor Nate
 video: https://provchurch-web-files.s3.amazonaws.com/redemption-stories/01-lisa.mp4
 videoPoster: 01-lisa.jpg

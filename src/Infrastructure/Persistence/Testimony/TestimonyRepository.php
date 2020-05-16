@@ -70,13 +70,14 @@ class TestimonyRepository implements TestimonyRepositoryInterface
             $testimonies[$key] = new Testimony(
                 $idCounter++,
                 $key,
-                $document->matter('bioPhoto') ?? '',
-                $document->matter('firstName') ?? '',
-                $document->matter('lastName') ?? '',
-                $document->body() ?? '',
-                $document->matter('toldBy') ?? '',
-                $document->matter('video') ?? '',
-                $document->matter('videoPoster') ?? ''
+                $document->matter('bioPhoto'),
+                $document->matter('firstName'),
+                $document->matter('lastName'),
+                $document->matter('title'),
+                $document->body(),
+                $document->matter('toldBy'),
+                $document->matter('video'),
+                $document->matter('videoPoster')
             );
         }
 
