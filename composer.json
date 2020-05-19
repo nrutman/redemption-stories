@@ -1,6 +1,6 @@
 {
     "name": "provchurch/testimonies",
-    "description": "A small framework to serve up testimony videos",
+    "description": "A small framework to serve up redemption story (testimony) videos",
     "keywords": [
         "microframework",
         "rest",

@@ -4,31 +4,31 @@ declare(strict_types=1);
 namespace App\Application\Actions\Home;
 
 use App\Application\Actions\Action;
-use App\Domain\Testimony\TestimonyRepositoryInterface;
+use App\Domain\Story\StoryRepositoryInterface;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
 use Twig\Environment as TwigEnvironment;
 
 class ViewHomeAction extends Action
 {
-    /** @var TestimonyRepositoryInterface */
-    private $testimonyRepository;
+    /** @var StoryRepositoryInterface */
+    private $storyRepository;
 
     public function __construct(
         LoggerInterface $logger,
         TwigEnvironment $twig,
-        TestimonyRepositoryInterface $testimonyRepository
+        StoryRepositoryInterface $storyRepository
     ) {
         parent::__construct($logger, $twig);
 
-        $this->testimonyRepository = $testimonyRepository;
+        $this->storyRepository = $storyRepository;
     }
 
     /** {@inheritdoc} */
     protected function action(): Response
     {
         $latest = $this
-            ->testimonyRepository
+            ->storyRepository
             ->findLast();
 
         return $this

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Domain\Testimony;
+namespace Tests\Domain\Story;
 
-use App\Domain\Testimony\Testimony;
+use App\Domain\Story\Story;
 use Tests\TestCase;
 
-class TestimonyTest extends TestCase
+class StoryTest extends TestCase
 {
     public function getterSetterProvider(): array
     {
@@ -41,7 +41,7 @@ class TestimonyTest extends TestCase
         string $videoUri,
         string $videoPosterUri
     ) {
-        $testimony = new Testimony(
+        $story = new Story(
             $id,
             $slug,
             $bioPhoto,
@@ -54,15 +54,15 @@ class TestimonyTest extends TestCase
             $videoPosterUri
         );
 
-        $this->assertEquals($id, $testimony->getId());
-        $this->assertEquals($slug, $testimony->getSlug());
-        $this->assertEquals($bioPhoto, $testimony->getBioPhoto());
-        $this->assertEquals($ownerFirstName, $testimony->getOwnerFirstName());
-        $this->assertEquals($ownerLastName, $testimony->getOwnerLastName());
-        $this->assertEquals($title, $testimony->getTitle());
-        $this->assertEquals($descriptionHtml, $testimony->getDescriptionHtml());
-        $this->assertEquals($toldBy, $testimony->getToldBy());
-        $this->assertEquals($videoUri, $testimony->getVideoUri());
-        $this->assertEquals($videoPosterUri, $testimony->getVideoPosterUri());
+        $this->assertEquals($id, $story->getId());
+        $this->assertEquals($slug, $story->getSlug());
+        $this->assertEquals($bioPhoto, $story->getBioPhoto());
+        $this->assertEquals($ownerFirstName, $story->getOwnerFirstName());
+        $this->assertEquals($ownerLastName, $story->getOwnerLastName());
+        $this->assertEquals($title, $story->getTitle());
+        $this->assertEquals($descriptionHtml, $story->getDescriptionHtml());
+        $this->assertEquals($toldBy, $story->getToldBy());
+        $this->assertEquals($videoUri, $story->getVideoUri());
+        $this->assertEquals($videoPosterUri, $story->getVideoPosterUri());
     }
 }

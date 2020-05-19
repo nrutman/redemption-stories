@@ -1,22 +1,22 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Infrastructure\Persistence\Testimony;
+namespace Tests\Infrastructure\Persistence\Story;
 
-use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepositoryInterface;
+use App\Domain\Story\Story;
+use App\Domain\Story\StoryRepositoryInterface;
 use App\Infrastructure\FileSystem\MarkdownFileLoader;
-use App\Infrastructure\Persistence\Testimony\TestimonyRepository;
+use App\Infrastructure\Persistence\Story\StoryRepository;
 use Mockery;
 use Spatie\YamlFrontMatter\Document as YamlDocument;
 use Tests\TestCase;
 
-class TestimonyRepositoryTest extends TestCase
+class StoryRepositoryTest extends TestCase
 {
     private const SLUG_1 = '123-alice';
     private const SLUG_2 = '456-bob';
 
-    /** @var TestimonyRepositoryInterface */
+    /** @var StoryRepositoryInterface */
     private $target;
 
     public function setUp(): void
@@ -29,14 +29,14 @@ class TestimonyRepositoryTest extends TestCase
                 self::SLUG_2 => new YamlDocument(['slug' => self::SLUG_2], 'BODY_2')
             ]);
 
-        $this->target = new TestimonyRepository(
+        $this->target = new StoryRepository(
             $markdownFileLoader
         );
     }
 
     public function testFindAll()
     {
-        /** @var Testimony[] $testimonies */
+        /** @var Story[] $testimonies */
         $testimonies = $this->target->findAll();
         $this->assertCount(2, $testimonies);
         $this->assertEquals(self::SLUG_1, $testimonies[0]->getSlug());
@@ -45,13 +45,13 @@ class TestimonyRepositoryTest extends TestCase
 
     public function testFindBySlug()
     {
-        $testimony = $this->target->findBySlug(self::SLUG_2);
-        $this->assertEquals(self::SLUG_2, $testimony->getSlug());
+        $story = $this->target->findBySlug(self::SLUG_2);
+        $this->assertEquals(self::SLUG_2, $story->getSlug());
     }
 
-    private static function createTestimony(int $id, string $slug): Testimony
+    private static function createStory(int $id, string $slug): Story
     {
-        return new Testimony(
+        return new Story(
             $id,
             $slug,
             'photo.jpg',

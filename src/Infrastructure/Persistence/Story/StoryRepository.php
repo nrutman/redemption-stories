@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Infrastructure\Persistence\Testimony;
+namespace App\Infrastructure\Persistence\Story;
 
-use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepositoryInterface;
+use App\Domain\Story\Story;
+use App\Domain\Story\StoryRepositoryInterface;
 use App\Infrastructure\FileSystem\MarkdownFileLoader;
 
-class TestimonyRepository implements TestimonyRepositoryInterface
+class StoryRepository implements StoryRepositoryInterface
 {
     /** @var MarkdownFileLoader */
     private $markdownFileLoader;
 
-    /** @var Testimony[] */
+    /** @var Story[] */
     private $testimonies = [];
 
     /**
@@ -35,7 +35,7 @@ class TestimonyRepository implements TestimonyRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findLast(): ?Testimony
+    public function findLast(): ?Story
     {
         if (count($this->testimonies) === 0) {
             return null;
@@ -47,7 +47,7 @@ class TestimonyRepository implements TestimonyRepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function findBySlug(string $slug): ?Testimony
+    public function findBySlug(string $slug): ?Story
     {
         if (!array_key_exists($slug, $this->testimonies)) {
             return null;
@@ -57,17 +57,17 @@ class TestimonyRepository implements TestimonyRepositoryInterface
     }
 
     /**
-     * @return Testimony[]
+     * @return Story[]
      */
     private function loadFromMarkdownFiles(): array
     {
         $idCounter = 0;
-        /** @var Testimony[] $testimonies */
+        /** @var Story[] $testimonies */
         $testimonies = [];
-        $documents = $this->markdownFileLoader->loadMarkdownFiles(sprintf('%s/../../../../data/testimony', __DIR__));
+        $documents = $this->markdownFileLoader->loadMarkdownFiles(sprintf('%s/../../../../data/story', __DIR__));
 
         foreach ($documents as $key => $document) {
-            $testimonies[$key] = new Testimony(
+            $testimonies[$key] = new Story(
                 $idCounter++,
                 $key,
                 $document->matter('bioPhoto'),
