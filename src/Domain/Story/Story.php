@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Domain\Testimony;
+namespace App\Domain\Story;
 
 use JsonSerializable;
 
-class Testimony
+class Story
 {
     /** @var string|null */
     private $bioPhoto;

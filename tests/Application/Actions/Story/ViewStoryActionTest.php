@@ -1,16 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Application\Actions\Testimony;
+namespace Tests\Application\Actions\Story;
 
-use App\Domain\Testimony\Testimony;
-use App\Domain\Testimony\TestimonyRepositoryInterface;
+use App\Domain\Story\Story;
+use App\Domain\Story\StoryRepositoryInterface;
 use DI\Container;
 use Mockery;
 use Tests\TestCase;
 use Twig\Environment as TwigEnvironment;
 
-class ViewTestimonyActionTest extends TestCase
+class ViewStoryActionTest extends TestCase
 {
     private const RESPONSE_OUTPUT = 'HTML OUTPUT';
     private const VIDEO_BIO_PHOTO = 'photo.jpg';
@@ -31,7 +31,7 @@ class ViewTestimonyActionTest extends TestCase
         /** @var Container $container */
         $container = $app->getContainer();
 
-        $testimony = new Testimony(
+        $story = new Story(
             self::VIDEO_ID,
             self::VIDEO_SLUG,
             self::VIDEO_BIO_PHOTO,
@@ -44,21 +44,21 @@ class ViewTestimonyActionTest extends TestCase
             self::VIDEO_POSTER_URI
         );
 
-        $testimonyRepository = Mockery::mock(TestimonyRepositoryInterface::class);
-        $testimonyRepository
+        $storyRepository = Mockery::mock(StoryRepositoryInterface::class);
+        $storyRepository
             ->shouldReceive('findBySlug')
             ->with(self::VIDEO_SLUG)
-            ->andReturn($testimony)
+            ->andReturn($story)
             ->once();
 
         $twig = Mockery::mock(TwigEnvironment::class);
         $twig
             ->shouldReceive('render')
-            ->with('testimony.html.twig', ['story' => $testimony])
+            ->with('story.html.twig', ['story' => $story])
             ->andReturn(self::RESPONSE_OUTPUT)
             ->once();
 
-        $container->set(TestimonyRepositoryInterface::class, $testimonyRepository);
+        $container->set(StoryRepositoryInterface::class, $storyRepository);
         $container->set(TwigEnvironment::class, $twig);
 
         $request = $this->createRequest('GET', sprintf('story/%s', self::VIDEO_SLUG));
