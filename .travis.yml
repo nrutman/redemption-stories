@@ -23,8 +23,3 @@ script:
 after_success:
 - if [[ "$ANALYSIS" == 'true' ]]; then vendor/bin/php-coveralls --coverage_clover=clover.xml -v ; fi
 - find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftps://provchurch.org/apps/redemption-stories-temp/ --user ${SFTP_USER}:${SFTP_PASS} \;
-
-
-env:
-  global:
-    secure: r4ejwdc62jAKB2uaNgZIqWUNWcn0n1a+/IPIUEHbioZoUvViH2YchnQYq4Da1NIQoL3e0mJqtdVAefJIarxZGKbJ+GLYyfGfQEf8fE5QcXOFmNZSp9bbg28O2OcHESt9Ixjw3Sh4Sud20v2CdEOGAccX6s9ul4BLnb7OH6Vja+KgJ4/P1s53ed4m9nplQfDUYkpkHzyi/C9YgRXfZbKtvNaF7qlDFKCS5AUU2h1vxQTpZJvJeaNFchH3B8p7uKjmwCfoy/satEbpH8Pk2Zkv/sBjU6i7XZBJ4BSt3p45EV2ttgDAiZHpik+viHTMioWHlZPNVvUAwkfxL7GKSyApCE1zU35eprzCoua0K/fPKhd2uZdgEZD96FeghhUdRla+sgu5ABvFZlLJZIYNAFzEJRhgkw4OtbLdTNWunAx708cwL8AY4eMLRZ6ZKpDm3s8Ta+buO6/IA/StQDNJjdjTz5GxGyyLZiKSlLOAW8uz1370E7Zzc4S1kj3T0RFV1xxFpVdZSAsMpaC7D4R6PlU9eYnZ5oAfuLrY5yfoZplf0j9YMQvFt3KoTlKliWhSRij2OPcqNGYTbQIsy+FnE9mbFClF42Qj4bqbFo0lNdmO+JOijDAdso2WWCXUZSIqDS1RUwJVXteqWqpak9UqVvwJt4fI3xqmJht2qr5hOpnYvrM=
