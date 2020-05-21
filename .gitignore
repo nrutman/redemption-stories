@@ -1,8 +1,6 @@
 .idea/
 /coverage/
 /vendor/
-/logs/*
-!/logs/README.md
 .php_cs.cache
 junit.xml
 .phpunit.result.cache

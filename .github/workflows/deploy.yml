@@ -1,0 +1,48 @@
+name: Deploy Code
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  FTP-Deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Store SSH Keys
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa_deploy
+          echo "$SSH_PUBLIC_KEY" > ~/.ssh/id_rsa_deploy.pub
+          sudo chmod 600 ~/.ssh/id_rsa_deploy
+          sudo chmod 600 ~/.ssh/id_rsa_deploy.pub
+          ssh-keyscan -H "$HOST" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.key_private }}
+          SSH_PUBLIC_KEY: ${{ secrets.key_public }}
+          HOST: ${{ secrets.ssh_server }}
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.1.1
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        with:
+          ftp-server: sftp://${{ secrets.ssh_server }}:${{ secrets.ssh_port }}/${{ secrets.remote_path }}/
+          ftp-username: ${{ secrets.ssh_user }}
+          ftp-password: ${{ secrets.ssh_password }}
+          known-hosts: ${{ secrets.ssh_knownhosts }}
+          git-ftp-args: --insecure
+#          git-ftp-args: --key "~/.ssh/id_rsa_deploy" --pubkey "~/.ssh/id_rsa_deploy.pub"
+
+      - name: Install Dependencies
+        run: |
+          ssh -i ~/.ssh/id_rsa_deploy -p "$SSH_PORT" "$SSH_HOST" "cd $REMOTE_PATH && $COMPOSER_BIN install"
+        shell: bash
+        env:
+          SSH_PORT: ${{ secrets.ssh_port }}
+          SSH_HOST: ${{ secrets.ssh_user }}@${{secrets.ssh_server}}
+          REMOTE_PATH: ${{ secrets.remote_path }}
+          COMPOSER_BIN: ${{ secrets.composer_bin }}
