@@ -22,4 +22,3 @@ script:
 
 after_success:
 - if [[ "$ANALYSIS" == 'true' ]]; then vendor/bin/php-coveralls --coverage_clover=clover.xml -v ; fi
-- find . -type d \( -path "./.*" -o -path "./node_modules" \) -prune -o -name "*" -print -exec curl --ftp-create-dirs -T {} ftps://provchurch.org:2222/apps/redemption-stories-temp/ --user ${SFTP_USER}:${SFTP_PASS} \;
