@@ -1,0 +1,19 @@
+# Basic FTP Ignores
+.gitignore
+*/.gitignore
+*/.gitkeep
+.git-ftp-ignore
+.git-ftp-include
+
+# From .gitignore
+.idea/
+/coverage/
+# /vendor/
+.php_cs.cache
+junit.xml
+.phpunit.result.cache
+
+# Other files
+/var/cache/*
+/var/logs/*
+/var/tmp/*
