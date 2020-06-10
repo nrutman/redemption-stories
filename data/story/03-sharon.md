@@ -1,5 +1,5 @@
 ---
-bioPhoto: sharon.jpg
+bioPhoto: 03-sharon.jpg
 firstName: Sharon
 lastName: Householder
 title: Even amidst trials and bitterness, God never stopped pursuing Sharon

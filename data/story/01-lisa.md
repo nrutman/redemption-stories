@@ -1,5 +1,5 @@
 ---
-bioPhoto: lisa.jpg
+bioPhoto: 01-lisa.jpg
 firstName: Lisa
 lastName: Loomis
 title: God used ordinary but passionate Christians to show Lisa the hollowness of mere outward religion.
