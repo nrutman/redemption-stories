@@ -1,5 +1,5 @@
 ---
-bioPhoto: ben.jpg
+bioPhoto: 02-ben.jpg
 firstName: Ben
 lastName: Zeisloft
 title: God saved Ben from outward success that was tearing him up inside.
