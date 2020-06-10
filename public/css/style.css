@@ -44,14 +44,12 @@ blockquote cite::after {
  */
 .page-header {
     margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.5rem;
 }
 
 .page-header img.logo {
     display: block;
     margin: 0 auto;
-    max-width: 30rem;
+    max-width: 40rem;
     padding: 1rem;
 }
 
@@ -65,7 +63,7 @@ h1.page-title {
 }
 
 h1.page-title .page-title-label:first-child {
-    margin-top: 3.5rem;
+    margin-top: 4rem;
 }
 
 h1.page-title .page-title-label {
