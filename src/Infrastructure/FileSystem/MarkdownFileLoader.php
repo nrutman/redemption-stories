@@ -28,28 +28,19 @@ class MarkdownFileLoader
     }
 
     /**
-     * @param string $pathToFiles
+     * @param string $file
      *
-     * @return YamlDocument[]
+     * @return YamlDocument
      */
-    public function loadMarkdownFiles(string $pathToFiles): array
+    public function loadMarkdownFile(string $file): YamlDocument
     {
-        $documents = [];
-
-        $files = glob(sprintf('%s/*.md', realpath($pathToFiles)));
-
-        foreach ($files as $file) {
-            $key = basename($file, '.md');
-            $doc = $this->yamlParser->parseFile($file);
-            $body = $this->markdownParser
-                ->setBreaksEnabled(true)
-                ->text($doc->body());
-            $documents[$key] = new YamlDocument(
-                $doc->matter(),
-                $body
-            );
-        }
-
-        return $documents;
+        $doc = $this->yamlParser->parseFile($file);
+        $body = $this->markdownParser
+            ->setBreaksEnabled(true)
+            ->text($doc->body());
+        return new YamlDocument(
+            $doc->matter(),
+            $body
+        );
     }
 }
