@@ -14,7 +14,7 @@ class Story
     private $descriptionHtml;
 
     /** @var int */
-    private $id;
+    private $chapter;
 
     /** @var string|null */
     private $ownerFirstName;
@@ -38,7 +38,7 @@ class Story
     private $videoUri;
 
     /**
-     * @param int $id
+     * @param int $chapter
      * @param string $slug
      * @param string|null $bioPhoto
      * @param string|null $ownerFirstName
@@ -50,7 +50,7 @@ class Story
      * @param string|null $videoPosterUri
      */
     public function __construct(
-        int $id,
+        int $chapter,
         string $slug,
         ?string $bioPhoto,
         ?string $ownerFirstName,
@@ -61,7 +61,7 @@ class Story
         ?string $videoUri,
         ?string $videoPosterUri
     ) {
-        $this->id = $id;
+        $this->chapter = $chapter;
         $this->slug = $slug;
         $this->bioPhoto = $bioPhoto;
         $this->ownerFirstName = $ownerFirstName;
@@ -92,9 +92,9 @@ class Story
     /**
      * @return int
      */
-    public function getId(): int
+    public function getChapter(): int
     {
-        return $this->id;
+        return $this->chapter;
     }
 
     /**
