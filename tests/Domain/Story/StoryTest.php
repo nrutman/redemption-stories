@@ -54,7 +54,7 @@ class StoryTest extends TestCase
             $videoPosterUri
         );
 
-        $this->assertEquals($id, $story->getId());
+        $this->assertEquals($id, $story->getChapter());
         $this->assertEquals($slug, $story->getSlug());
         $this->assertEquals($bioPhoto, $story->getBioPhoto());
         $this->assertEquals($ownerFirstName, $story->getOwnerFirstName());

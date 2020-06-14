@@ -6,12 +6,18 @@ namespace App\Infrastructure\Persistence\Story;
 use App\Domain\Story\Story;
 use App\Domain\Story\StoryNotFoundException;
 use App\Domain\Story\StoryRepositoryInterface;
-use App\Infrastructure\FileSystem\MarkdownFileLoader;
+use App\Infrastructure\FileSystem\FileReader;
+use Parsedown;
+use Spatie\YamlFrontMatter\Document as YamlDocument;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 class StoryRepository implements StoryRepositoryInterface
 {
-    /** @var MarkdownFileLoader */
-    private $markdownFileLoader;
+    /** @var FileReader */
+    protected $fileReader;
+
+    /** @var Parsedown */
+    protected $markdownParser;
 
     /** @var string */
     private $pathToFiles;
@@ -19,14 +25,25 @@ class StoryRepository implements StoryRepositoryInterface
     /** @var Story[]|bool[] */
     private $storyCache = [];
 
+    /** @var YamlFrontMatter */
+    protected $yamlParser;
+
     /**
-     * @param MarkdownFileLoader $markdownFileLoader
+     * @param FileReader $fileReader
+     * @param Parsedown $markdownParser
+     * @param YamlFrontMatter $yamlParser
      * @param string $dataPath
      */
-    public function __construct(MarkdownFileLoader $markdownFileLoader, string $dataPath = '%s/../../../../data/story')
-    {
-        $this->markdownFileLoader = $markdownFileLoader;
-        $this->pathToFiles = sprintf($dataPath, __DIR__);
+    public function __construct(
+        FileReader $fileReader,
+        Parsedown $markdownParser,
+        YamlFrontMatter $yamlParser,
+        string $dataPath = '%s/../../../../data/story'
+    ) {
+        $this->fileReader = $fileReader;
+        $this->markdownParser = $markdownParser;
+        $this->yamlParser = $yamlParser;
+        $this->pathToFiles = realpath(sprintf($dataPath, __DIR__));
         $this->loadFileSlugs();
     }
 
@@ -70,20 +87,6 @@ class StoryRepository implements StoryRepositoryInterface
     }
 
     /**
-     * Pre-populates the cache with available files/slugs.
-     */
-    private function loadFileSlugs()
-    {
-        $pathToFiles = sprintf('%s/../../../../data/story', __DIR__);
-
-        $files = glob(sprintf('%s/*.md', realpath($pathToFiles)));
-
-        foreach ($files as $file) {
-            $this->storyCache[basename($file, '.md')] = false;
-        }
-    }
-
-    /**
      * Fetches a story either from the cache or by reading the markdown file.
      *
      * @param string $slug
@@ -98,7 +101,7 @@ class StoryRepository implements StoryRepositoryInterface
 
         if ($this->storyCache[$slug] === false) {
             // load the story
-            $document = $this->markdownFileLoader->loadMarkdownFile(sprintf('%s/%s.md', $this->pathToFiles, $slug));
+            $document = $this->loadMarkdownFile(sprintf('%s/%s.md', $this->pathToFiles, $slug));
 
             $this->storyCache[$slug] = new Story(
                 intval($slug),
@@ -115,5 +118,38 @@ class StoryRepository implements StoryRepositoryInterface
         }
 
         return $this->storyCache[$slug];
+    }
+
+    /**
+     * Pre-populates the cache with available files/slugs.
+     */
+    private function loadFileSlugs()
+    {
+        $files = $this
+            ->fileReader
+            ->listFiles(sprintf('%s/*.md', $this->pathToFiles));
+
+        foreach ($files as $file) {
+            $this->storyCache[basename($file, '.md')] = false;
+        }
+    }
+
+    /**
+     * Loads a markdown file and returns the structured data.
+     *
+     * @param $file
+     *
+     * @return YamlDocument
+     */
+    private function loadMarkdownFile($file): YamlDocument
+    {
+        $doc = $this->yamlParser->parseFile($file);
+        $body = $this->markdownParser
+            ->setBreaksEnabled(true)
+            ->text($doc->body());
+        return new YamlDocument(
+            $doc->matter(),
+            $body
+        );
     }
 }
