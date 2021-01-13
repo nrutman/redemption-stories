@@ -50,6 +50,7 @@
     "scripts": {
         "cs": "php-cs-fixer fix --config=.php_cs.dist -v --diff --dry-run",
         "cs-fix": "php-cs-fixer fix --config=.php_cs.dist -v --diff",
+        "scss": "pscss -f compressed -i styles < styles/app.scss",
         "start": "php -S localhost:8080 -t public",
         "test": "phpunit",
         "test-ci": "phpunit --log-junit junit.xml"
